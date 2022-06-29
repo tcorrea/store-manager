@@ -7,7 +7,7 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-// First commit
+// npm i chai-as-promised
 
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
