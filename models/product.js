@@ -10,19 +10,19 @@ const connection = require('../database/connection')
 
 const productModel = {
   index: async () => {
-    const query = 'SELECT * FROM products';
+    const query = 'SELECT * FROM StoreManager.products';
 
-    const data = connection.execute(query);
+    const [products] = await connection.execute(query);
 
-    return data;
+    return products;
   },
 
   show: async (id) => {
-    const query = 'SELECT * FROM products WHERE id = (?)';
+    const query = 'SELECT * FROM StoreManager.products WHERE id = ?';
 
-    const data = connection.execute(query, [id]);
+    const [[product]] = await connection.execute(query, [id]);
 
-    return data;
+    return product;
   },
 }
 

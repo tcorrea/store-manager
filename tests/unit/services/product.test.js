@@ -1,70 +1,51 @@
 const service = require('../../../services/product');
 const model = require('../../../models/product');
+const mock = require('../../../mocks/product.mock');
 const sinon = require('sinon');
 const { expect } = require('chai');
-const { valid } = require('joi');
 
 describe('Product Service', () => {
+  beforeEach(() => sinon.restore());
   describe('#index', () => {
-
-    beforeEach(() => {
-      sinon.restore();
-    });
 
     it('deve retornar todos os produtos', async () => {
 
-      const expected = [{ id: 1, name: 'Caneta' }, { id: 2, name: 'Caderno' }];
+      sinon.stub(model, 'index').resolves(mock.indexExpected);
 
-      sinon.stub(model, 'index').resolves(expected);
+      const products = await service.index();
 
-      const result = await service.index();
-
-      expect(result).to.eql(expected);
+      // expect(result).to.eql(expected);
+      expect(products).to.deep.eq(mock.indexExpected);
     });
-
-
 
   });
 
   describe('#show', () => {
 
-    beforeEach(() => {
-      sinon.restore();
-    });
-
     it('deve retornar um produto', async () => {
 
-      const expected = [{ id: 1, name: 'Caneta' }];
+      sinon.stub(model, 'show').resolves(mock.showExpected);
 
-      sinon.stub(model, 'show').resolves(expected);
+      const product = await service.show();
 
-      const result = await service.show();
-
-      expect(result).to.eql(expected);
+      expect(product).to.deep.eq(mock.showExpected);
     });
   });
 
 
   describe('#validateID', () => {
 
-    beforeEach(() => {
-      sinon.restore();
-    });
 
     it('valida se dispara um erro ao mandar uma id invalida', () => {
-      const invalidID = '';
       // expect(serieService.validateBody(invalidData))
       //   .to.be.rejectedWith(ValidationError)
-      expect(() => service.validateID(invalidID))
-        .to.throws('"id" is not allowed to be empty')
+      expect(() => service.validateBody(mock.invalidID))
+        .to.throws('"id" must be a number');
     });
 
     it('valida se é um ID valido', () => {
-      const validID = 1;
-
-      const value = service.validateID(validID);
-
-      expect(value).to.be.eq(validID);
+      const id = service.validateBody(mock.validID);
+      expect(id).to.be.eql(mock.validID);
     });
 
   })

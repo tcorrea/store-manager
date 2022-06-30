@@ -15,8 +15,6 @@ const productsRouter = require('./routers/product');
 
 app.use('/products', productsRouter);
 
-/* Todas as rotas com /recipes/<alguma-coisa> entram aqui e vão para o roteador. */
-app.use('/recipes', recipesRouter);
 // npm i chai-as-promised
 
 // não remova essa exportação, é para o avaliador funcionar
