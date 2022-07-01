@@ -22,7 +22,7 @@ const productSchema = {
     });
     const { error } = schema.validate(body);
     if (error) {
-      const code = error.message === '\"name\" is required' ? 400 : 422;
+      const code = error.message === '"name" is required' ? 400 : 422;
       return {
         ok: false,
         code,
