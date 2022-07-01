@@ -1,12 +1,4 @@
-const connection = require('../database/connection')
-// Verb	       URI	                Action	Route Name
-// GET	      /photos	              index	  photos.index
-// GET	      /photos/create	      create	photos.create
-// POST	      /photos	              store	  photos.store
-// GET	      /photos/{photo}	      show	  photos.show
-// GET	      /photos/{photo}/edit	edit	  photos.edit
-// PUT/PATCH	/photos/{photo}	      update	photos.update
-// DELETE	    /photos/{photo}	      destroy	photos.destroy
+const connection = require('../database/connection');
 
 const productModel = {
   index: async () => {
@@ -16,7 +8,6 @@ const productModel = {
 
     return products;
   },
-
   show: async (id) => {
     const query = 'SELECT * FROM StoreManager.products WHERE id = ?';
 
@@ -24,6 +15,6 @@ const productModel = {
 
     return product;
   },
-}
+};
 
 module.exports = productModel;
