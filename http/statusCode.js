@@ -8,6 +8,11 @@ const ok = {
   message: 'ok',
 };
 
+const created = {
+  code: 201,
+  message: 'ok',
+};
+
 const badRequest = {
   code: 400,
   message: 'Bad Request',
@@ -17,4 +22,5 @@ module.exports = {
   notFound,
   ok,
   badRequest,
+  created,
 };

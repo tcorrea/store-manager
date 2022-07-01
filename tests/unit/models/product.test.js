@@ -14,11 +14,11 @@ describe('Product Model', () => {
 
     it('deve retornar todos os produtos', async () => {
 
-      sinon.stub(connection, 'execute').resolves([mock.indexExpected]);
+      sinon.stub(connection, 'execute').resolves([mock.index.expected]);
 
       const products = await model.index()
 
-      expect(products).to.eql(mock.indexExpected);
+      expect(products).to.eql(mock.index.expected);
     });
 
   });
@@ -26,10 +26,26 @@ describe('Product Model', () => {
   describe('#show', () => {
 
     it('deve retornar um produto', async () => {
-      sinon.stub(connection, 'execute').resolves([[mock.showExpected]]);
-      const product = await model.show(mock.showExpected.id);
-      expect(product).to.eql(mock.showExpected);
+
+      sinon.stub(connection, 'execute').resolves([[mock.show.expected]]);
+
+      const product = await model.show(mock.show.validId);
+
+      expect(product).to.eql(mock.show.expected);
     });
+
   });
 
+  describe('#store', () => {
+
+    it('deve cadastrar com sucesso e retornar o id do produto cadastradoo', async () => {
+
+      sinon.stub(connection, 'execute').resolves([mock.store.return]);
+
+      const id = await model.store(mock.store.body);
+
+      expect(id).to.be.eq(mock.store.id);
+    });
+
+  });
 });

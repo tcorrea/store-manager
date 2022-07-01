@@ -2,12 +2,13 @@ const model = require('../models/product');
 
 const productService = {
   index: async () => {
-    const products = await model.index();
-    return products;
+    return await model.index();
   },
   show: async (id) => {
-    const product = await model.show(id);
-    return product;
+    return await model.show(id);
+  },
+  store: async (body) => {
+    return await model.store(body);
   },
 };
 

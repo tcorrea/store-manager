@@ -8,6 +8,13 @@ const productMiddleware = {
 
     next();
   },
+  store: (req, res, next) => {
+    const { ok, code, message } = schema.store(req.body);
+
+    if (!ok) return res.status(code).json({ message });
+
+    next();
+  },
 };
 
 module.exports = productMiddleware;

@@ -13,7 +13,9 @@ describe('Product Controller', () => {
 
     it('deve retornar todos os produtos', async () => {
       // arranjo
-      sinon.stub(service, 'index').resolves(mock.indexExpected);
+      // Mockar a função que o controller chama
+      // nesse caso: sevice.index
+      sinon.stub(service, 'index').resolves(mock.index.expected);
       const req = {};
       const res = {};
 
@@ -24,8 +26,8 @@ describe('Product Controller', () => {
       await controller.index(req, res);
 
       // assertivas
-      expect(res.status.calledWith(ok.code)).to.be.eq(true);
-      expect(res.json.calledWith(mock.indexExpected)).to.be.eq(true);
+      expect(res.status.calledWith(ok.code)).to.be.true;
+      expect(res.json.calledWith(mock.index.expected)).to.be.true;
     });
 
   });
@@ -34,21 +36,18 @@ describe('Product Controller', () => {
 
     it('deve retornar um produto', async () => {
 
-      sinon.stub(service, 'show').resolves(mock.showExpected);
+      sinon.stub(service, 'show').resolves(mock.show.expected);
 
       const req = {};
       const res = {};
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub();
-      req.params = mock.validID;
-
-      // const product = await service.show(req, res);
-      // expect(product).to.deep.eq(mock.showExpected);
+      req.params = mock.show.validId;
 
       await controller.show(req, res);
       expect(res.status.calledWith(ok.code)).to.be.true;
-      expect(res.json.calledWith(mock.showExpected)).to.be.true;
+      expect(res.json.calledWith(mock.show.expected)).to.be.true;
 
     });
 
@@ -61,14 +60,34 @@ describe('Product Controller', () => {
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub();
-      req.params = mock.notFoundID;
+      req.params = mock.show.notFoundId;
 
       await controller.show(req, res);
 
       expect(res.status.calledWith(notFound.code)).to.be.true;
 
-      expect(res.json.calledWith(mock.showNotFoundExpected)).to.be.true;
+      expect(res.json.calledWith(mock.show.notFoundExpected)).to.be.true;
     });
 
-  })
+  });
+
+  describe('#store', () => {
+
+    it('deve cadastrar um produto e retorna-lo com a id e nome', async () => {
+      sinon.stub(service, 'store').resolves(mock.store.id);
+
+      const req = {};
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub();
+      req.body = mock.store.body;
+
+      await controller.store(req, res);
+
+      expect(res.status.calledWith(201)).to.be.true;
+      expect(res.json.calledWith(mock.store.expected)).to.be.true;
+    });
+  });
+
 });

@@ -10,12 +10,12 @@ describe('Product Service', () => {
 
     it('deve retornar todos os produtos', async () => {
 
-      sinon.stub(model, 'index').resolves(mock.indexExpected);
+      sinon.stub(model, 'index').resolves(mock.index.expected);
 
       const products = await service.index();
 
       // expect(result).to.eql(expected);
-      expect(products).to.deep.eq(mock.indexExpected);
+      expect(products).to.deep.eq(mock.index.expected);
     });
 
   });
@@ -29,6 +29,18 @@ describe('Product Service', () => {
       const product = await service.show();
 
       expect(product).to.deep.eq(mock.showExpected);
+    });
+  });
+
+  describe('#store', () => {
+    it('deve cadastrar com sucesso e retornar o id do produto cadastrado', async () => {
+
+      sinon.stub(model, 'store').resolves(mock.store.id);
+
+      const productId = await service.store(mock.store.body);
+
+      expect(productId).to.be.eq(mock.store.id);
+
     });
   });
 
