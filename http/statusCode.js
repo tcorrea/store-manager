@@ -1,8 +1,20 @@
-const statusCode = {
-  notFound: 404,
-  ok: 200,
-  notAcceptable: 406,
-  badRequest: 400,
+const notFound = {
+  code: 404,
+  message: 'Not Found',
 };
 
-module.exports = statusCode;
+const ok = {
+  code: 200,
+  message: 'ok',
+};
+
+const badRequest = {
+  code: 400,
+  message: 'Bad Request',
+};
+
+module.exports = {
+  notFound,
+  ok,
+  badRequest,
+};

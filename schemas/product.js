@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const code = require('../http/statusCode');
+const { badRequest } = require('../http/statusCode');
 
 const productSchema = {
   show: (params) => {
@@ -10,8 +10,8 @@ const productSchema = {
     if (error) {
       return {
         ok: false,
-        code: code.badRequest,
-        message: error.message,
+        code: badRequest.code,
+        message: badRequest.message,
       };
     }
     return { ok: true };

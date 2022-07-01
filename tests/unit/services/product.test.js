@@ -33,20 +33,20 @@ describe('Product Service', () => {
   });
 
 
-  describe('#validateID', () => {
+  // describe('#validateID', () => {
 
 
-    it('valida se dispara um erro ao mandar uma id invalida', () => {
-      // expect(serieService.validateBody(invalidData))
-      //   .to.be.rejectedWith(ValidationError)
-      expect(() => service.validateBody(mock.invalidID))
-        .to.throws('"id" must be a number');
-    });
+  //   it('valida se dispara um erro ao mandar uma id invalida', () => {
+  //     // expect(serieService.validateBody(invalidData))
+  //     //   .to.be.rejectedWith(ValidationError)
+  //     expect(() => service.validateBody(mock.invalidID))
+  //       .to.throws('"id" must be a number');
+  //   });
 
-    it('valida se é um ID valido', () => {
-      const id = service.validateBody(mock.validID);
-      expect(id).to.be.eql(mock.validID);
-    });
+  //   it('valida se é um ID valido', () => {
+  //     const id = service.validateBody(mock.validID);
+  //     expect(id).to.be.eql(mock.validID);
+  //   });
 
-  })
+  // })
 });
