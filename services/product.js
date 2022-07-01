@@ -1,4 +1,3 @@
-const Joi = require('joi');
 const model = require('../models/product');
 
 const productService = {

@@ -17,8 +17,12 @@ const productMock = {
     id: 1,
     name: 'Martelo de Thor',
   },
+  showNotFoundExpected: {
+    message: 'Product not found',
+  },
   invalidID: { id: '' },
   validID: { id: 1 },
+  notFoundID: { id: 99999 },
 };
 
 module.exports = productMock;
