@@ -3,7 +3,8 @@ const { ErrorHandler } = require('../errors/ErrorHandler');
 const productService = require('./product');
 
 const saleService = {
-
+  index: () => model.index(),
+  show: (id) => model.show(id),
   store: async (body) => {
     const ids = body.reduce((result, item) => {
       result.push(item.productId);

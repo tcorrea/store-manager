@@ -15,6 +15,13 @@ const saleSchema = {
       }
     });
   },
+  show: (params) => {
+    const schema = Joi.object({
+      id: Joi.number().required(),
+    });
+    const { error } = schema.validate(params);
+    if (error) throw new ErrorHandler(error.message, 400);
+  },
 };
 
 module.exports = saleSchema;
