@@ -38,7 +38,7 @@ describe('Product Model', () => {
 
   describe('#store', () => {
 
-    it('deve cadastrar com sucesso e retornar o id do produto cadastradoo', async () => {
+    it('deve cadastrar com sucesso e retornar o id do produto cadastrado', async () => {
 
       sinon.stub(connection, 'execute').resolves([mock.store.return]);
 
