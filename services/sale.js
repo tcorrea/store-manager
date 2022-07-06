@@ -14,7 +14,7 @@ const saleService = {
     const existsProduct = await productService.checkIfExistsByArrayOfId(ids);
 
     if (!existsProduct) {
-      throw new ErrorHandler('Product not found', 404);
+      throw new ErrorHandler('Error: Product not found', 404);
     }
     const dateId = await model.storeDate();
     await model.store(dateId, body);

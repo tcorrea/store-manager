@@ -9,67 +9,67 @@ describe('Product Controller', () => {
 
   beforeEach(() => sinon.restore());
 
-  // describe('#index', () => {
+  describe('#index', () => {
 
-  //   it('deve retornar todos os produtos', async () => {
-  //     // arranjo
-  //     // Mockar a função que o controller chama
-  //     // nesse caso: sevice.index
-  //     sinon.stub(service, 'index').resolves(mock.index.expected);
-  //     const req = {};
-  //     const res = {};
+    it('deve retornar todos as vendas', async () => {
+      // arranjo
+      // Mockar a função que o controller chama
+      // nesse caso: sevice.index
+      sinon.stub(service, 'index').resolves(mock.index.resolvesAndExpected);
+      const req = {};
+      const res = {};
 
-  //     res.status = sinon.stub().returns(res);
-  //     res.json = sinon.stub();
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub();
 
-  //     // ação
-  //     await controller.index(req, res);
+      // ação
+      await controller.index(req, res);
 
-  //     // assertivas
-  //     expect(res.status.calledWith(ok.code)).to.be.true;
-  //     expect(res.json.calledWith(mock.index.expected)).to.be.true;
-  //   });
+      // assertivas
+      expect(res.status.calledWith(ok.code)).to.be.true;
+      expect(res.json.calledWith(mock.index.resolvesAndExpected)).to.be.true;
+    });
 
-  // });
+  });
 
-  // describe('#show', () => {
+  describe('#show', () => {
 
-  //   it('deve retornar um produto', async () => {
+    it('deve retornar uma venda', async () => {
 
-  //     sinon.stub(service, 'show').resolves(mock.show.expected);
+      sinon.stub(service, 'show').resolves(mock.show.expectedAndResolves);
 
-  //     const req = {};
-  //     const res = {};
+      const req = {};
+      const res = {};
 
-  //     res.status = sinon.stub().returns(res);
-  //     res.json = sinon.stub();
-  //     req.params = mock.show.validId;
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub();
+      req.params = mock.show.validId;
 
-  //     await controller.show(req, res);
-  //     expect(res.status.calledWith(ok.code)).to.be.true;
-  //     expect(res.json.calledWith(mock.show.expected)).to.be.true;
+      await controller.show(req, res);
+      expect(res.status.calledWith(ok.code)).to.be.true;
+      expect(res.json.calledWith(mock.show.expectedAndResolves)).to.be.true;
 
-  //   });
+    });
 
-  //   it('deve retornar uma mensagem de erro ao não encontrar um produto', async () => {
+    it('deve retornar uma mensagem de erro ao não encontrar uma venda', async () => {
 
-  //     sinon.stub(service, 'show').resolves(null);
+      sinon.stub(service, 'show').resolves([]);
 
-  //     const req = {};
-  //     const res = {};
+      const req = {};
+      const res = {};
 
-  //     res.status = sinon.stub().returns(res);
-  //     res.json = sinon.stub();
-  //     req.params = mock.show.notFoundId;
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub();
+      req.params = mock.show.notFoundId;
 
-  //     await controller.show(req, res);
+      await controller.show(req, res);
 
-  //     expect(res.status.calledWith(notFound.code)).to.be.true;
+      expect(res.status.calledWith(notFound.code)).to.be.true;
 
-  //     expect(res.json.calledWith(mock.show.notFoundExpected)).to.be.true;
-  //   });
+      expect(res.json.calledWith(mock.show.notFoundExpected)).to.be.true;
+    });
 
-  // });
+  });
 
   describe('#store', () => {
 

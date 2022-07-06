@@ -10,31 +10,31 @@ describe('Sale Model', () => {
     sinon.restore();
   });
 
-  // describe('#index', () => {
+  describe('#index', () => {
 
-  //   it('deve retornar todos os produtos', async () => {
+    it('deve retornar todas as vendas', async () => {
 
-  //     sinon.stub(connection, 'execute').resolves([mock.index.expected]);
+      sinon.stub(connection, 'execute').resolves([mock.index.resolvesAndExpected]);
 
-  //     const products = await model.index()
+      const sales = await model.index()
 
-  //     expect(products).to.eql(mock.index.expected);
-  //   });
+      expect(sales).to.eql(mock.index.resolvesAndExpected);
+    });
 
-  // });
+  });
 
-  // describe('#show', () => {
+  describe('#show', () => {
 
-  //   it('deve retornar um produto', async () => {
+    it('deve retornar uma venda', async () => {
 
-  //     sinon.stub(connection, 'execute').resolves([[mock.show.expected]]);
+      sinon.stub(connection, 'execute').resolves([mock.show.expectedAndResolves]);
 
-  //     const product = await model.show(mock.show.validId);
+      const sale = await model.show(mock.show.validId);
 
-  //     expect(product).to.eql(mock.show.expected);
-  //   });
+      expect(sale).to.eql(mock.show.expectedAndResolves);
+    });
 
-  // });
+  });
 
   describe('#store', () => {
 
