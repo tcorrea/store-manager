@@ -24,9 +24,9 @@ const productModel = {
   },
   update: async (id, name) => {
     const query = 'UPDATE StoreManager.products SET name = ? WHERE id = ?';
-    const [{ insertId }] = await connection.execute(query, [name, id]);
-
-    return insertId;
+    const [{ affectedRows }] = await connection.execute(query, [name, id]);
+    console.log('affectedRows', affectedRows);
+    return affectedRows;
   },
 
 };

@@ -34,8 +34,8 @@ const productController = {
 
     if (!product) return res.status(notFound.code).json({ message: 'Product not found' });
 
-    const result = await service.update(id, name);
-    console.log(result);
+    const affectedRows = await service.update(id, name);
+    console.log(affectedRows);
     const updatedProduct = { id, name };
 
     return res.status(ok.code).json(updatedProduct);

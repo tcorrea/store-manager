@@ -33,6 +33,12 @@ const productMock = {
     body: { name: 'ProdutoX' },
     expected: { id: 1, name: 'ProdutoX' },
   },
+  update: {
+    params: { id: 1 },
+    body: { name: 'ProdutoX' },
+    resolvesService: { id: 1, name: 'ProdutoX' },
+    resolves: { affectedRows: 1 },
+  },
 };
 
 module.exports = productMock;

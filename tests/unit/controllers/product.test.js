@@ -90,4 +90,45 @@ describe('Product Controller', () => {
     });
   });
 
+  describe('#update', () => {
+
+    it('deve alterar um produto com sucesso', async () => {
+      sinon.stub(service, 'update').resolves();
+      sinon.stub(service, 'show').resolves(mock.show.expected);
+
+      const req = {};
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub();
+      req.params = mock.update.params;
+      req.body = mock.update.body;
+
+      await controller.update(req, res);
+
+      expect(res.status.calledWith(200)).to.be.true;
+      expect(res.json.calledWith(mock.store.expected)).to.be.true;
+    });
+
+    it('deve retornar product not found ao tentar alterar um produto que não existe', async () => {
+
+      sinon.stub(service, 'update').resolves();
+      sinon.stub(service, 'show').resolves(null);
+
+      const req = {};
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub();
+      req.params = mock.update.params;
+      req.body = mock.update.body;
+
+      await controller.update(req, res);
+
+      expect(res.status.calledWith(notFound.code)).to.be.true;
+
+      expect(res.json.calledWith(mock.show.notFoundExpected)).to.be.true;
+    });
+
+  });
 });

@@ -48,4 +48,17 @@ describe('Product Model', () => {
     });
 
   });
+
+  describe('#update', () => {
+
+    it('deve alterar um produto com sucesso', async () => {
+
+      sinon.stub(connection, 'execute').resolves([mock.update.resolves]);
+
+      const affectedRows = await model.update(mock.update.params.id, mock.update.body.name);
+
+      expect(affectedRows).to.be.eq(1);
+    });
+
+  });
 });

@@ -44,8 +44,35 @@ describe('Product Service', () => {
     });
   });
 
+  describe('#update', () => {
+    it('deve alterar um produto com sucesso', async () => {
 
-  // describe('#validateID', () => {
+      sinon.stub(model, 'update').resolves(mock.update.params.id, mock.update.body.name);
+
+      const affectedRows = await service.update(mock.update.params.id, mock.update.body.name);
+
+      expect(affectedRows).to.be.eq(1);
+
+    });
+  });
+
+  describe('#checkIfExistsByArrayOfId', () => {
+    it('verifica se o produto existe, passando um array - true', async () => {
+
+      sinon.stub(model, 'show').resolves(true);
+
+      const result = await service.checkIfExistsByArrayOfId([1, 2])
+      expect(result).to.be.true;
+
+    });
+    it('verifica se o produto existe, passando um array - false', async () => {
+
+      sinon.stub(model, 'show').resolves(false);
+      const result = await service.checkIfExistsByArrayOfId([1, 222])
+      expect(result).to.be.false;
+
+    });
+  });
 
 
   //   it('valida se dispara um erro ao mandar uma id invalida', () => {
