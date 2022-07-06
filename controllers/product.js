@@ -40,6 +40,14 @@ const productController = {
 
     return res.status(ok.code).json(updatedProduct);
   },
+  destroy: async (req, res) => {
+    const { id } = req.params;
+    const product = await service.show(id);
+    if (!product) return res.status(notFound.code).json({ message: 'Product not found' });
+    const affectedRows = await service.destroy(id);
+    console.log('destroy', affectedRows);
+    return res.status(204).send();
+  },
 
 };
 

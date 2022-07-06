@@ -8,4 +8,5 @@ router.get('/', controller.index);
 router.post('/', middleware.store, controller.store);
 router.get('/:id', middleware.show, controller.show);
 router.put('/:id', middleware.update, controller.update);
+router.delete('/:id', controller.destroy);
 module.exports = router;

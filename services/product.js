@@ -5,6 +5,7 @@ const productService = {
   show: (id) => model.show(id),
   store: (body) => model.store(body),
   update: (id, name) => model.update(id, name),
+  destroy: (id) => model.destroy(id),
   checkIfExistsByArrayOfId: async (arrayOfId) => {
     const result = await Promise.all(
       arrayOfId.map(async (id) => {
