@@ -21,7 +21,6 @@ const productSchema = {
       const code = error.message.includes('required') ? 400 : 422;
       throw new ErrorHandler(error.message, code);
     }
-    return { ok: true };
   },
 };
 
